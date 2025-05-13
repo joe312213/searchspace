@@ -18,6 +18,9 @@ class dimspec:
     
     def len(self):
         return len(self.dimvals)
+
+    def __len__(self):
+        return self.len()
     
 
 # dimindices is a list of index vectors
