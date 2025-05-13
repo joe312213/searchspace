@@ -38,18 +38,21 @@ provided a 'process' function to traverse the whole space, but is also iterable
 
 ### Examples
 ```
+# define some dimensions
 ds1 = dimspec('d1', list(range(-10,10)))
 ds2 = dimspec('d12', list(range(-20,0)))
 ds3 = dimspec('d12', [chr(x) for x in range(0,256)])
-
+# put dimensions into dimsets
 dst1 = dimset([d1]) # defaults to generating indices for all possible values
-dst2 = dimset([ds2,ds3], [(x,y) for x in range(len(ds2)) for y in range(len(ds3)]
+dst2 = dimset([ds2,ds3], [(x,y) for x in range(len(ds2)) for y in range(len(ds3))])
 
 def proc(c:dimsetcol):
  ...
  # the vector evaluation/cost/processing function
 
 dsc = dimsetcol([dst1,dst2], procs=proc)
+
+dsc.process()
 ```
 
 
