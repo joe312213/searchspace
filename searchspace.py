@@ -84,6 +84,9 @@ class dimset:
         dnames = ''
         for d in dims: dnames += d.dimname        
         return dnames
+    
+    def __len__(self):
+        return self.numindices
 
     def __iter__(self):
         return self
@@ -615,14 +618,17 @@ class dimsetcol:
                     self.curri = self.resolve('dict', self.mode)
                 else:
                     self.curri, self.curr = self.resolve('dict', 'b')
-        
-    #    self.upcur = True
 
         if self.savestate:
             self.savestate(ci)
                 
         return ci if self.mode == 'i' else cv
     
+    def __len__(self):
+        l = 1
+        for ds in self.col:
+            l *= len(ds)
+        return l
 
     def skip(self, restoring=False):
         if self.end: return None
